@@ -1,0 +1,8 @@
+name: Guests
+version: '1.0.0.0'
+main: io.github.derec4.guests.Guests
+api-version: '1.18'
+prefix: DerexXD
+authors: [ DerexXD ]
+description: Show off your builds to newcomers while keeping gameplay secure! Perfect for SMPs
+website: https://github.com/DereC4
