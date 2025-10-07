@@ -1,5 +1,6 @@
 package io.github.derec4.guests;
 
+import io.github.derec4.guests.listeners.GuestBlockListener;
 import io.github.derec4.guests.listeners.GuestChatListener;
 import io.github.derec4.guests.listeners.GuestJoinListener;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -23,6 +24,7 @@ public final class Guests extends JavaPlugin {
         PluginManager pm = getServer().getPluginManager();
         pm.registerEvents(new GuestJoinListener(this), this);
         pm.registerEvents(new GuestChatListener(this), this);
+        pm.registerEvents(new GuestBlockListener(this), this);
     }
 
     public String getDiscordInviteUrl() {
