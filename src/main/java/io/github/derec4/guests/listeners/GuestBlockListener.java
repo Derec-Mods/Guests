@@ -17,7 +17,7 @@ public class GuestBlockListener implements Listener {
     @EventHandler
     public void onBlockBreak(BlockBreakEvent event) {
         Player player = event.getPlayer();
-        if (player.hasPermission("guests.guest")) {
+        if (player.hasPermission("guests.guest") && !plugin.canGuestBreakBlocks()) {
             event.setCancelled(true);
         }
     }
@@ -25,7 +25,7 @@ public class GuestBlockListener implements Listener {
     @EventHandler
     public void onBlockPlace(BlockPlaceEvent event) {
         Player player = event.getPlayer();
-        if (player.hasPermission("guests.guest")) {
+        if (player.hasPermission("guests.guest") && !plugin.canGuestPlaceBlocks()) {
             event.setCancelled(true);
         }
     }
@@ -33,9 +33,8 @@ public class GuestBlockListener implements Listener {
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event) {
         Player player = event.getPlayer();
-        if (player.hasPermission("guests.guest")) {
+        if (player != null && player.hasPermission("guests.guest") && !plugin.canGuestInteract()) {
             event.setCancelled(true);
         }
     }
 }
-

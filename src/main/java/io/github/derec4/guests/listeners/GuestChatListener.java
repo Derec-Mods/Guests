@@ -16,7 +16,7 @@ public class GuestChatListener implements Listener {
     @EventHandler
     public void onPlayerChat(AsyncChatEvent event) {
         Player player = event.getPlayer();
-        if (player.hasPermission("guests.guest")) {
+        if (player.hasPermission("guests.guest") && !plugin.canGuestChat()) {
             event.setCancelled(true);
             String message = plugin.getGuestChatDenyMessage();
             player.sendMessage(message);
