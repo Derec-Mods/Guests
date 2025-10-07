@@ -7,7 +7,14 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.entity.Player;
 
+import io.github.derec4.guests.Guests;
+
 public class GuestJoinListener implements Listener {
+    private final Guests plugin;
+
+    public GuestJoinListener(Guests plugin) {
+        this.plugin = plugin;
+    }
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
@@ -15,11 +22,13 @@ public class GuestJoinListener implements Listener {
 
         // Check if the player is marked as a guest
         if (player.hasPermission("guests.guest")) {
+            // welcome message
+            String message = plugin.getGuestWelcomeMessage();
+            player.sendMessage(message);
 
-            // If guest has spectator node, force them into spectator
             if (player.hasPermission("guests.spectator")) {
                 Bukkit.getScheduler().runTaskLater(
-                        Bukkit.getPluginManager().getPlugin("Guests"),
+                        plugin,
                         () -> player.setGameMode(GameMode.SPECTATOR),
                         1L // 1 tick later to avoid join conflicts
                 );
@@ -27,4 +36,3 @@ public class GuestJoinListener implements Listener {
         }
     }
 }
-
