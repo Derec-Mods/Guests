@@ -1,17 +1,17 @@
 package io.github.derec4.guests.listeners;
 
+import io.papermc.paper.event.player.AsyncChatEvent;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.AsyncPlayerChatEvent;
-import org.bukkit.entity.Player;
 
 public class GuestChatListener implements Listener {
     @EventHandler
-    public void onPlayerChat(AsyncPlayerChatEvent event) {
+    public void onPlayerChat(AsyncChatEvent event) {
         Player player = event.getPlayer();
         if (player.hasPermission("guests.guest")) {
             event.setCancelled(true);
-            player.sendMessage("§cChat is disabled for guests. Apply for whitelist to participate.");
+            player.sendMessage("§cYou are a guest. Drop your username on the Discord to play!");
         }
     }
 }
