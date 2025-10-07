@@ -22,10 +22,9 @@ public class GuestJoinListener implements Listener {
 
         // Check if the player is marked as a guest
         if (player.hasPermission("guests.guest")) {
-            // Custom welcome message from config
             String message = plugin.getGuestWelcomeMessage();
-            message = message.replace("{discord}", plugin.getDiscordInviteUrl());
             player.sendMessage(message);
+
             // Only force spectator if enabled in config
             if (plugin.isForceSpectator() && player.hasPermission("guests.spectator")) {
                 Bukkit.getScheduler().runTaskLater(

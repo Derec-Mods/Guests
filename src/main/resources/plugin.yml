@@ -6,3 +6,16 @@ prefix: DerexXD
 authors: [ DerexXD ]
 description: Show off your builds to newcomers while keeping gameplay secure! Perfect for SMPs
 website: https://github.com/DereC4
+permissions:
+  guests.guest:
+    description: Player is a guest
+    default: true
+  guests.spectator:
+    description: Guest is forced into spectator mode
+    default: true
+  guests.muted:
+    description: Guest is muted and cannot chat
+    default: true
+  guests.limited:
+    description: Guest has limited access (cannot break/place/interact)
+    default: true
