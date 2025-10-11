@@ -19,41 +19,6 @@ public class PermissionUtils {
     }
 
     /**
-     * Assign guest permissions to a player (default state)
-     */
-    public void makeGuest(Player player) {
-        PermissionAttachment attachment = getAttachment(player);
-
-        attachment.setPermission("guests.guest", true);
-        attachment.setPermission("guests.spectator", true);
-        attachment.setPermission("guests.muted", true);
-        attachment.setPermission("guests.limited", true);
-
-        // Revoke member permissions if any
-        attachment.unsetPermission("guests.member");
-
-        player.recalculatePermissions();
-    }
-
-    /**
-     * Promote player from guest to full member
-     */
-    public void promoteToMember(Player player) {
-        PermissionAttachment attachment = getAttachment(player);
-
-        // Remove all guest-related permissions
-        attachment.unsetPermission("guests.guest");
-        attachment.unsetPermission("guests.spectator");
-        attachment.unsetPermission("guests.muted");
-        attachment.unsetPermission("guests.limited");
-
-        // Give full member node
-        attachment.setPermission("guests.member", true);
-
-        player.recalculatePermissions();
-    }
-
-    /**
      * Utility: gets or creates a PermissionAttachment for a player
      */
     private PermissionAttachment getAttachment(Player player) {
