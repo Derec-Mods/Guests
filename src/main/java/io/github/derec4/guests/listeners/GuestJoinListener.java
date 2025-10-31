@@ -30,7 +30,7 @@ public class GuestJoinListener implements Listener {
         // Check if the player is marked as a guest
         if (player.hasPermission("guests.guest")) {
             String message = plugin.getGuestWelcomeMessage();
-            player.sendMessage(message);
+            player.sendMessage(Component.text(message).color(NamedTextColor.GREEN));
 
             // Display title to the guest
             Component titleMain = Component.text("Welcome to our world!").color(NamedTextColor.GREEN);
