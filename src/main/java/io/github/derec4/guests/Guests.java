@@ -14,6 +14,8 @@ public final class Guests extends JavaPlugin {
     private String discordInviteUrl;
     private String guestWelcomeMessage;
     private String guestChatDenyMessage;
+    private String titleMain;
+    private String titleSub;
     private boolean forceSpectator;
     private boolean allowGuestBreakBlocks;
     private boolean allowGuestPlaceBlocks;
@@ -28,6 +30,8 @@ public final class Guests extends JavaPlugin {
         discordInviteUrl = config.getString("discordInviteUrl", "https://discord.gg/48H6shbH4t");
         guestWelcomeMessage = config.getString("guestWelcomeMessage", "§eWelcome! You are a guest.");
         guestChatDenyMessage = config.getString("guestChatDenyMessage", "§cYou are a guest.");
+        titleMain = config.getString("titleMain", "Welcome to our world!");
+        titleSub = config.getString("titleSub", "If you want to play, join the Discord");
         forceSpectator = config.getBoolean("forceSpectator", true);
         allowGuestBreakBlocks = config.getBoolean("allowGuestBreakBlocks", false);
         allowGuestPlaceBlocks = config.getBoolean("allowGuestPlaceBlocks", false);
@@ -83,6 +87,14 @@ public final class Guests extends JavaPlugin {
         return allowGuestChat;
     }
 
+    public String getTitleMain() {
+        return titleMain;
+    }
+
+    public String getTitleSub() {
+        return titleSub;
+    }
+
     /**
      * Reload the plugin configuration
      */
@@ -93,6 +105,8 @@ public final class Guests extends JavaPlugin {
         discordInviteUrl = config.getString("discordInviteUrl", "https://discord.gg/48H6shbH4t");
         guestWelcomeMessage = config.getString("guestWelcomeMessage", "§eWelcome! You are a guest.");
         guestChatDenyMessage = config.getString("guestChatDenyMessage", "§cYou are a guest.");
+        titleMain = config.getString("titleMain", "Welcome to our world!");
+        titleSub = config.getString("titleSub", "If you want to play, join the Discord");
         forceSpectator = config.getBoolean("forceSpectator", true);
         allowGuestBreakBlocks = config.getBoolean("allowGuestBreakBlocks", false);
         allowGuestPlaceBlocks = config.getBoolean("allowGuestPlaceBlocks", false);

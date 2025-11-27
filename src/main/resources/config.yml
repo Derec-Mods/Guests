@@ -1,6 +1,8 @@
 discordInviteUrl: "https://discord.gg/48H6shbH4t"
 guestWelcomeMessage: "Welcome, guest! To play, drop your username on our Discord: discord.gg/48H6shbH4t"
 guestChatDenyMessage: "You are a guest. Drop your username on the Discord to be verified: discord.gg/48H6shbH4t"
+titleMain: "Welcome to our world!"
+titleSub: "If you want to play, join the Discord"
 forceSpectator: true
 allowGuestBreakBlocks: false
 allowGuestPlaceBlocks: false

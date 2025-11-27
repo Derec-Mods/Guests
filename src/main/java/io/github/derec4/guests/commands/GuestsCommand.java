@@ -26,7 +26,6 @@ public class GuestsCommand implements CommandExecutor, TabCompleter {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         if (args.length == 0) {
-            // Show help
             sender.sendMessage(Component.text("=== Guests Plugin ===").color(NamedTextColor.GREEN));
             sender.sendMessage(Component.text("/guests reload - Reload the config").color(NamedTextColor.GRAY));
             sender.sendMessage(Component.text("Version: " + plugin.getDescription().getVersion()).color(NamedTextColor.GRAY));

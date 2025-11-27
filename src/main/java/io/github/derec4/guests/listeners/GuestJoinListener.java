@@ -38,10 +38,9 @@ public class GuestJoinListener implements Listener {
                 String message = plugin.getGuestWelcomeMessage();
                 player.sendMessage(Component.text(message).color(NamedTextColor.GREEN));
 
-                // Display title to the guest
-                Component titleMain = Component.text("Welcome to our world!").color(NamedTextColor.GREEN);
-                Component titleSub =
-                        Component.text("If you want to play, join the Discord").color(NamedTextColor.GREEN);
+                // Display title to the guest (using configurable values)
+                Component titleMain = Component.text(plugin.getTitleMain()).color(NamedTextColor.GREEN);
+                Component titleSub = Component.text(plugin.getTitleSub()).color(NamedTextColor.GREEN);
 
                 Title.Times times = Title.Times.times(
                         Duration.ofMillis(500),  // fadeIn (10 ticks = 500ms)
