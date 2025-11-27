@@ -1,5 +1,5 @@
 name: Guests
-version: '1.0.1.0'
+version: '1.0.1.2'
 main: io.github.derec4.guests.Guests
 api-version: '1.18'
 prefix: DerexXD
