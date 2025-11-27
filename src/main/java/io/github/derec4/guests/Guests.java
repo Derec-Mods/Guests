@@ -1,5 +1,6 @@
 package io.github.derec4.guests;
 
+import io.github.derec4.guests.commands.GuestsCommand;
 import io.github.derec4.guests.listeners.GuestBlockListener;
 import io.github.derec4.guests.listeners.GuestChatListener;
 import io.github.derec4.guests.listeners.GuestJoinListener;
@@ -24,7 +25,7 @@ public final class Guests extends JavaPlugin {
         // Plugin startup logic
         saveDefaultConfig();
         FileConfiguration config = getConfig();
-        discordInviteUrl = config.getString("discordInviteUrl", "https://discord.gg/example");
+        discordInviteUrl = config.getString("discordInviteUrl", "https://discord.gg/48H6shbH4t");
         guestWelcomeMessage = config.getString("guestWelcomeMessage", "§eWelcome! You are a guest.");
         guestChatDenyMessage = config.getString("guestChatDenyMessage", "§cYou are a guest.");
         forceSpectator = config.getBoolean("forceSpectator", true);
@@ -37,6 +38,10 @@ public final class Guests extends JavaPlugin {
         pm.registerEvents(new GuestJoinListener(this), this);
         pm.registerEvents(new GuestChatListener(this), this);
         pm.registerEvents(new GuestBlockListener(this), this);
+
+        GuestsCommand guestsCommand = new GuestsCommand(this);
+        getCommand("guests").setExecutor(guestsCommand);
+        getCommand("guests").setTabCompleter(guestsCommand);
 
         Bukkit.getLogger().info("");
         Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "  |_______|                             " +
@@ -76,6 +81,25 @@ public final class Guests extends JavaPlugin {
 
     public boolean canGuestChat() {
         return allowGuestChat;
+    }
+
+    /**
+     * Reload the plugin configuration
+     */
+    public void reloadPluginConfig() {
+        reloadConfig();
+        FileConfiguration config = getConfig();
+
+        discordInviteUrl = config.getString("discordInviteUrl", "https://discord.gg/48H6shbH4t");
+        guestWelcomeMessage = config.getString("guestWelcomeMessage", "§eWelcome! You are a guest.");
+        guestChatDenyMessage = config.getString("guestChatDenyMessage", "§cYou are a guest.");
+        forceSpectator = config.getBoolean("forceSpectator", true);
+        allowGuestBreakBlocks = config.getBoolean("allowGuestBreakBlocks", false);
+        allowGuestPlaceBlocks = config.getBoolean("allowGuestPlaceBlocks", false);
+        allowGuestInteract = config.getBoolean("allowGuestInteract", false);
+        allowGuestChat = config.getBoolean("allowGuestChat", false);
+
+        Bukkit.getLogger().info("[Guests] Configuration reloaded successfully!");
     }
 
     @Override

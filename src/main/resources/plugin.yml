@@ -6,6 +6,11 @@ prefix: DerexXD
 authors: [ DerexXD ]
 description: Show off your builds to newcomers while keeping gameplay secure! Perfect for SMPs
 website: https://github.com/DereC4
+commands:
+  guests:
+    description: Main command for Guests plugin
+    usage: /guests [subcommand]
+    aliases: [guest]
 permissions:
   guests.guest:
     description: Player is a guest
@@ -19,3 +24,6 @@ permissions:
   guests.limited:
     description: Guest has limited access (cannot break/place/interact)
     default: true
+  guests.reload:
+    description: Allows reloading the plugin configuration
+    default: op
