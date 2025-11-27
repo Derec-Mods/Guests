@@ -1,6 +1,8 @@
 package io.github.derec4.guests.listeners;
 
 import io.github.derec4.guests.Guests;
+import io.github.derec4.guests.events.GuestJoinEvent;
+import io.github.derec4.guests.events.GuestSpectatorEvent;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.title.Title;
@@ -33,6 +35,9 @@ public class GuestJoinListener implements Listener {
 
         // Check if the player is marked as a guest
         if (player.hasPermission("guests.guest")) {
+            GuestJoinEvent guestJoinEvent = new GuestJoinEvent(player);
+            Bukkit.getPluginManager().callEvent(guestJoinEvent);
+
             // Schedule the message and title to show after spawn
             Bukkit.getScheduler().runTaskLater(plugin, () -> {
                 String message = plugin.getGuestWelcomeMessage();
@@ -53,11 +58,11 @@ public class GuestJoinListener implements Listener {
 
             // Only force spectator if enabled in config and delay a lil
             if (plugin.isForceSpectator() && player.hasPermission("guests.spectator")) {
-                Bukkit.getScheduler().runTaskLater(
-                        plugin,
-                        () -> player.setGameMode(GameMode.SPECTATOR),
-                        10L
-                );
+                Bukkit.getScheduler().runTaskLater(plugin, () -> {
+                    GuestSpectatorEvent spectatorEvent = new GuestSpectatorEvent(player);
+                    Bukkit.getPluginManager().callEvent(spectatorEvent);
+                    player.setGameMode(GameMode.SPECTATOR);
+                }, 10L);
             }
         }
     }
