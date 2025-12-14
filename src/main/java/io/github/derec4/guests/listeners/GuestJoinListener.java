@@ -11,7 +11,7 @@ import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.spigotmc.event.player.PlayerSpawnLocationEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
 
 import java.time.Duration;
 
@@ -30,13 +30,17 @@ public class GuestJoinListener implements Listener {
      * @param event
      */
     @EventHandler
-    public void onPlayerSpawn(PlayerSpawnLocationEvent event) {
+    public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
 
         // Check if the player is marked as a guest
         if (player.hasPermission("guests.guest")) {
             GuestJoinEvent guestJoinEvent = new GuestJoinEvent(player);
             Bukkit.getPluginManager().callEvent(guestJoinEvent);
+
+            if (guestJoinEvent.isCancelled()) {
+                return;
+            }
 
             // Schedule the message and title to show after spawn
             Bukkit.getScheduler().runTaskLater(plugin, () -> {
@@ -61,7 +65,9 @@ public class GuestJoinListener implements Listener {
                 Bukkit.getScheduler().runTaskLater(plugin, () -> {
                     GuestSpectatorEvent spectatorEvent = new GuestSpectatorEvent(player);
                     Bukkit.getPluginManager().callEvent(spectatorEvent);
-                    player.setGameMode(GameMode.SPECTATOR);
+                    if (!spectatorEvent.isCancelled()) {
+                        player.setGameMode(GameMode.SPECTATOR);
+                    }
                 }, 10L);
             }
         }

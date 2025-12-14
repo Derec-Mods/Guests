@@ -25,6 +25,7 @@ public class GuestChatListener implements Listener {
 
             GuestChatEvent guestChatEvent = new GuestChatEvent(player, messageContent);
             Bukkit.getScheduler().runTask(plugin, () -> Bukkit.getPluginManager().callEvent(guestChatEvent));
+            event.setCancelled(true);
             player.sendMessage(message);
         }
     }
