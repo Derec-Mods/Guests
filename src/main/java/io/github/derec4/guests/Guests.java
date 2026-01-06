@@ -24,7 +24,6 @@ public final class Guests extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        // Plugin startup logic
         saveDefaultConfig();
         FileConfiguration config = getConfig();
         discordInviteUrl = config.getString("discordInviteUrl", "https://discord.gg/48H6shbH4t");
@@ -53,10 +52,6 @@ public final class Guests extends JavaPlugin {
         Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "  | Derex |     Guests v" + getDescription().getVersion());
         Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "  |_______|     Running on " + Bukkit.getName() + " - " + Bukkit.getVersion());
         Bukkit.getLogger().info("");
-    }
-
-    public String getDiscordInviteUrl() {
-        return discordInviteUrl;
     }
 
     public String getGuestWelcomeMessage() {
@@ -95,9 +90,6 @@ public final class Guests extends JavaPlugin {
         return titleSub;
     }
 
-    /**
-     * Reload the plugin configuration
-     */
     public void reloadPluginConfig() {
         reloadConfig();
         FileConfiguration config = getConfig();
@@ -118,6 +110,5 @@ public final class Guests extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        // Plugin shutdown logic
     }
 }

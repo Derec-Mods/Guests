@@ -9,21 +9,23 @@ import java.util.UUID;
 
 public class PermissionUtils {
 
-    private final HashMap<UUID, PermissionAttachment> attachments = new HashMap<>();
+    private static final HashMap<UUID, PermissionAttachment> attachments = new HashMap<>();
 
-    /**
-     * Check if a player is currently a guest
-     */
-    public boolean isGuest(Player player) {
-        return player.hasPermission("guests.guest");
-    }
-
-    /**
-     * Utility: gets or creates a PermissionAttachment for a player
-     */
-    private PermissionAttachment getAttachment(Player player) {
+    private static PermissionAttachment getAttachment(Player player) {
         return attachments.computeIfAbsent(player.getUniqueId(),
                 uuid -> player.addAttachment(Bukkit.getPluginManager().getPlugin("Guests")));
+    }
+
+    public static void addPermission(Player player, String permission) {
+        PermissionAttachment attachment = getAttachment(player);
+        attachment.setPermission(permission, true);
+    }
+
+    public static void removePermission(Player player, String permission) {
+        PermissionAttachment attachment = attachments.get(player.getUniqueId());
+        if (attachment != null) {
+            attachment.unsetPermission(permission);
+        }
     }
 }
 
