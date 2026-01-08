@@ -11,7 +11,6 @@ public class GuestEntityListener implements Listener {
     @EventHandler
     public void onEntityDamageByEntity(EntityDamageByEntityEvent event) {
         if (event.getDamager() instanceof Player player) {
-            // If player is a guest and doesn't have the damage permission, cancel the event
             if (player.hasPermission("guests.guest") && !player.hasPermission("guests.damage")) {
                 event.setCancelled(true);
             }
@@ -21,11 +20,9 @@ public class GuestEntityListener implements Listener {
     @EventHandler
     public void onEntityPickupItem(EntityPickupItemEvent event) {
         if (event.getEntity() instanceof Player player) {
-            // If player is a guest and doesn't have the pickup items permission, cancel the event
-            if (player.hasPermission("guests.guest") && !player.hasPermission("guests.pickupitems")) {
+            if (player.hasPermission("guests.guest") && !player.hasPermission("guests.pickup")) {
                 event.setCancelled(true);
             }
         }
     }
 }
-
