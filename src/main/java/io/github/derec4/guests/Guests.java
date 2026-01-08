@@ -22,8 +22,6 @@ public final class Guests extends JavaPlugin {
     private boolean allowGuestPlaceBlocks;
     private boolean allowGuestInteract;
     private boolean allowGuestChat;
-    private boolean allowGuestDamage;
-    private boolean allowGuestPickupItems;
 
     @Override
     public void onEnable() {
@@ -39,14 +37,12 @@ public final class Guests extends JavaPlugin {
         allowGuestPlaceBlocks = config.getBoolean("allowGuestPlaceBlocks", false);
         allowGuestInteract = config.getBoolean("allowGuestInteract", false);
         allowGuestChat = config.getBoolean("allowGuestChat", false);
-        allowGuestDamage = config.getBoolean("allowGuestDamage", false);
-        allowGuestPickupItems = config.getBoolean("allowGuestPickupItems", false);
 
         PluginManager pm = getServer().getPluginManager();
         pm.registerEvents(new GuestJoinListener(this), this);
         pm.registerEvents(new GuestChatListener(this), this);
         pm.registerEvents(new GuestBlockListener(this), this);
-        pm.registerEvents(new GuestEntityListener(this), this);
+        pm.registerEvents(new GuestEntityListener(), this);
 
         GuestsCommand guestsCommand = new GuestsCommand(this);
         getCommand("guests").setExecutor(guestsCommand);
@@ -88,13 +84,6 @@ public final class Guests extends JavaPlugin {
         return allowGuestChat;
     }
 
-    public boolean canGuestDamage() {
-        return allowGuestDamage;
-    }
-
-    public boolean canGuestPickupItems() {
-        return allowGuestPickupItems;
-    }
 
     public String getTitleMain() {
         return titleMain;
@@ -118,8 +107,6 @@ public final class Guests extends JavaPlugin {
         allowGuestPlaceBlocks = config.getBoolean("allowGuestPlaceBlocks", false);
         allowGuestInteract = config.getBoolean("allowGuestInteract", false);
         allowGuestChat = config.getBoolean("allowGuestChat", false);
-        allowGuestDamage = config.getBoolean("allowGuestDamage", false);
-        allowGuestPickupItems = config.getBoolean("allowGuestPickupItems", false);
 
         Bukkit.getLogger().info("[Guests] Configuration reloaded successfully!");
     }

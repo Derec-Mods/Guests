@@ -8,5 +8,3 @@ allowGuestBreakBlocks: false
 allowGuestPlaceBlocks: false
 allowGuestInteract: false
 allowGuestChat: false
-allowGuestDamage: false
-allowGuestPickupItems: false
