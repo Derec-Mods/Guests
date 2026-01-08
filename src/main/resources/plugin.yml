@@ -27,3 +27,9 @@ permissions:
   guests.reload:
     description: Allows reloading the plugin configuration
     default: op
+  guests.damage:
+    description: Allows guest to deal/take damage
+    default: false
+  guests.pickup:
+    description: Allows guest to pick up items
+    default: false
