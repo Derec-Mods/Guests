@@ -5,7 +5,7 @@ Created for our college Minecraft server (derex smp), check this plugin in actio
 mc.longhorns.dev
 ```
 
-Running a public Minecraft survival server today often means dealing with organized griefing groups and automated server scanners, forcing many servers to run `/whitelist on` just to stay safe. But that comes at the cost of accessibility, what if you actually want people to join and explore?
+Running a public Minecraft survival server today often means [dealing with organized griefing groups and automated server scanners](https://share.google/aimode/LK3uqaxPv5qWEaNxY), forcing many servers to run `/whitelist on` just to stay safe. But that comes at the cost of accessibility, what if you actually want people to join and explore?
 
 Guests is a lightweight Bukkit plugin for managing guest players on your Minecraft server. Using a permission system and config, server owners can leave their whitelists off to make a server public, but still vet people who join by turning on a guest mode by default, and setting unverified players to spectator mode. 
 
